@@ -187,7 +187,7 @@ defmodule Blinkchain.HAL do
       {^port, {:data, {_, 'ERR: ' ++ response}}} -> {:error, to_string(response)}
       {^port, {:exit_status, exit_status}} -> raise "rpi_ws281x OS process died with status: #{inspect(exit_status)}"
     after
-      500 -> raise "timeout waiting for rpi_ws281x OS process to reply"
+      1000 -> raise "timeout waiting for rpi_ws281x OS process to reply"
     end
   end
 
